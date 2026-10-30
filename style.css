@@ -1,0 +1,1574 @@
+/* ==========================================================================
+   SYNAPSE B2B — TIFFANY BLUE & LUXURY LIGHT THEME DESIGN SYSTEM
+   Ultra-Crisp, High-End B2B Wholesale Interface for Raw Materials & Co-Procurement
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* ==========================================================================
+     TIFFANY BLUE LUXURY LIGHT DESIGN TOKENS
+     Authentic Tiffany Blue (#0abab5 / #81d8d0) paired with crisp porcelain surfaces
+     ========================================================================== */
+  --bg-primary: #f5f9f9;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #ffffff;
+  --bg-surface-elevated: #ebf6f5;
+  --bg-glass: rgba(255, 255, 255, 0.92);
+  --bg-input: #ffffff;
+
+  --border-subtle: rgba(10, 186, 181, 0.16);
+  --border-medium: rgba(10, 186, 181, 0.28);
+  --border-cyan: #0abab5; /* Authentic Tiffany Robin Egg Blue */
+  --border-active: #0abab5;
+
+  --text-primary: #0e2225;
+  --text-secondary: #3b5c63;
+  --text-muted: #678c94;
+  --text-inverse: #ffffff;
+
+  /* Tiffany Blue Spectrum */
+  --brand-cyan: #0abab5;         /* Authentic Tiffany Blue */
+  --brand-cyan-dark: #007a76;    /* Deep readable Tiffany for typography */
+  --brand-cyan-light: #e6f8f7;   /* Soft luxury Tiffany mist wash */
+  --brand-cyan-glow: rgba(10, 186, 181, 0.35);
+
+  --brand-emerald: #059669;
+  --brand-amber: #d97706;
+  --brand-rose: #e11d48;
+  
+  --gradient-cyan-indigo: linear-gradient(135deg, #0abab5 0%, #009e99 55%, #007f7b 100%);
+  --gradient-pool-glow: linear-gradient(90deg, #0abab5 0%, #10b981 100%);
+  --glow-cyan: 0 6px 25px rgba(10, 186, 181, 0.32);
+  --glow-emerald: 0 6px 25px rgba(16, 185, 129, 0.28);
+
+  --shadow-sm: 0 2px 10px rgba(14, 34, 37, 0.05);
+  --shadow-md: 0 10px 30px rgba(10, 186, 181, 0.1);
+  --shadow-lg: 0 20px 50px rgba(14, 34, 37, 0.09);
+
+  --radius-xs: 5px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --transition-fast: 0.16s ease;
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --container-max: 1320px;
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Technical Precision Grid Background in Soft Tiffany Tint */
+.tech-grid-overlay {
+  position: fixed;
+  inset: 0;
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(10, 186, 181, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 186, 181, 0.04) 1px, transparent 1px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-industrial-light {
+  position: fixed;
+  top: -12vw;
+  right: -8vw;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, rgba(10, 186, 181, 0.12) 0%, rgba(129, 216, 208, 0.06) 50%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-industrial-light-2 {
+  position: fixed;
+  bottom: 8vw;
+  left: -12vw;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(10, 186, 181, 0.08) 0%, transparent 65%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.mono-font {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   LIVE COMMODITY TICKER RIBBON (Tiffany Soft Mint Palette)
+   ========================================================================== */
+.commodity-ribbon {
+  background: #eaf5f4;
+  border-bottom: 1px solid rgba(10, 186, 181, 0.22);
+  padding: 0.45rem 1rem;
+  font-size: 0.78rem;
+  overflow: hidden;
+  position: relative;
+  z-index: 110;
+  color: #112e32;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  white-space: nowrap;
+  animation: tickerSlide 35s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes tickerSlide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.ticker-symbol {
+  font-weight: 700;
+  color: var(--brand-cyan-dark);
+}
+
+.ticker-price {
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.ticker-delta.up {
+  color: var(--brand-emerald);
+  font-weight: 700;
+}
+
+.ticker-delta.down {
+  color: var(--brand-rose);
+  font-weight: 700;
+}
+
+.ticker-delta.neutral {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   ENTERPRISE HEADER (Porcelain & Tiffany Glassmorphism)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.85rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Brand Identity */
+.brand-b2b {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+.brand-cube {
+  width: 42px;
+  height: 42px;
+  background: var(--gradient-cyan-indigo);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--glow-cyan);
+}
+
+.brand-cube svg {
+  width: 22px;
+  height: 22px;
+  fill: #ffffff;
+}
+
+.brand-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.brand-tagline {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-cyan-dark);
+}
+
+/* Verification Badge */
+.mill-direct-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(10, 186, 181, 0.1);
+  border: 1px solid rgba(10, 186, 181, 0.3);
+  color: var(--brand-cyan-dark);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Industrial Search Bar */
+.search-form {
+  flex: 1;
+  max-width: 520px;
+  position: relative;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 6px rgba(10, 186, 181, 0.05);
+}
+
+.search-field:focus-within {
+  border-color: var(--border-active);
+  box-shadow: 0 0 0 3px rgba(10, 186, 181, 0.2);
+}
+
+.search-field input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.88rem;
+}
+
+.search-field input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-field svg {
+  width: 18px;
+  height: 18px;
+  color: var(--brand-cyan-dark);
+  margin-right: 0.6rem;
+}
+
+/* Header Action Controls */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.currency-dropdown {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.currency-dropdown:hover {
+  border-color: var(--brand-cyan);
+}
+
+.corporate-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 6px rgba(10, 186, 181, 0.05);
+  transition: border-color var(--transition-fast);
+}
+
+.corporate-user-pill:hover {
+  border-color: var(--border-cyan);
+}
+
+.corp-dot {
+  width: 9px;
+  height: 9px;
+  background: var(--brand-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(10, 186, 181, 0.8);
+}
+
+.corp-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.corp-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.82rem;
+}
+
+.corp-tier {
+  font-size: 0.68rem;
+  color: var(--brand-cyan-dark);
+  font-weight: 600;
+}
+
+/* B2B PO & RFQ Bag Trigger */
+.po-cart-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--gradient-cyan-indigo);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1.2rem;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  box-shadow: var(--glow-cyan);
+  transition: all var(--transition-fast);
+}
+
+.po-cart-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(10, 186, 181, 0.45);
+}
+
+.po-weight-badge {
+  font-family: 'JetBrains Mono', monospace;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: 0.82rem;
+}
+
+/* ==========================================================================
+   POOLED CO-PROCUREMENT HERO SHOWCASE (Tiffany Accents & Clean Light Surface)
+   ========================================================================== */
+.pool-hero-section {
+  margin: 2.2rem 0 3rem;
+}
+
+.pool-banner-card {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 2.4rem 2.8rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.pool-banner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-cyan-indigo);
+}
+
+.pool-content {
+  position: relative;
+  z-index: 2;
+}
+
+.pool-header-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.live-pool-pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--brand-cyan-light);
+  border: 1px solid rgba(10, 186, 181, 0.35);
+  color: var(--brand-cyan-dark);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--brand-cyan);
+  border-radius: 50%;
+  animation: pulseLight 1.5s infinite;
+}
+
+@keyframes pulseLight {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 10px var(--brand-cyan); }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+.pool-deadline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fef3c7;
+  border: 1px solid rgba(217, 119, 6, 0.3);
+  color: #b45309;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.pool-hero-title {
+  font-size: 2.3rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.pool-hero-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+  max-width: 580px;
+}
+
+/* Pool Progress Radar */
+.pool-progress-block {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.3rem;
+  margin-bottom: 1.6rem;
+}
+
+.pool-metrics-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+}
+
+.metric-highlight {
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--brand-cyan-dark);
+}
+
+.pool-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(10, 186, 181, 0.15);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 0.65rem;
+}
+
+.pool-fill-bar {
+  height: 100%;
+  background: var(--gradient-cyan-indigo);
+  border-radius: var(--radius-full);
+  transition: width 0.6s ease;
+  box-shadow: 0 0 15px rgba(10, 186, 181, 0.5);
+}
+
+.pool-participants-meta {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.pool-action-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-join-pool {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--gradient-cyan-indigo);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1.7rem;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: var(--glow-cyan);
+  transition: all var(--transition-fast);
+}
+
+.btn-join-pool:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(10, 186, 181, 0.5);
+}
+
+.btn-learn-coop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1.4rem;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.btn-learn-coop:hover {
+  border-color: var(--brand-cyan);
+  color: var(--brand-cyan-dark);
+}
+
+/* Pool Visual Spotlight Frame */
+.pool-visual-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.pool-img-frame {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 310px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-md);
+  background: var(--bg-surface-elevated);
+}
+
+.pool-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.pool-banner-card:hover .pool-img-frame img {
+  transform: scale(1.04);
+}
+
+.floating-saving-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #0abab5;
+  color: #ffffff;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 15px rgba(10, 186, 181, 0.4);
+}
+
+/* ==========================================================================
+   B2B FILTER & CATEGORY TOOLBAR (Tiffany Chips & Controls)
+   ========================================================================== */
+.b2b-toolbar-section {
+  margin-bottom: 2rem;
+}
+
+.b2b-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.industry-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 0.3rem;
+}
+
+.industry-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.industry-tab-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(10, 186, 181, 0.05);
+  transition: all var(--transition-fast);
+}
+
+.industry-tab-btn:hover {
+  background: var(--brand-cyan-light);
+  color: var(--brand-cyan-dark);
+  border-color: var(--brand-cyan);
+}
+
+.industry-tab-btn.active {
+  background: var(--brand-cyan);
+  color: #ffffff;
+  border-color: var(--brand-cyan);
+  font-weight: 800;
+  box-shadow: 0 4px 18px rgba(10, 186, 181, 0.4);
+}
+
+.sort-and-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.b2b-select {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.55rem 0.95rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 1px 4px rgba(10, 186, 181, 0.05);
+  transition: border-color var(--transition-fast);
+}
+
+.b2b-select:hover {
+  border-color: var(--brand-cyan);
+}
+
+/* Secondary Meta Bar */
+.filter-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+}
+
+.active-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--brand-cyan-light);
+  color: var(--brand-cyan-dark);
+  border: 1px solid rgba(10, 186, 181, 0.35);
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   B2B PRODUCT / MATERIAL CARDS GRID (Porcelain White with Tiffany Accents)
+   ========================================================================== */
+.materials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.8rem;
+  margin-bottom: 4.5rem;
+}
+
+.material-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.material-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand-cyan);
+  box-shadow: var(--shadow-md);
+}
+
+/* Material Media */
+.material-media-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-surface-elevated);
+  cursor: pointer;
+}
+
+.material-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-smooth);
+}
+
+.material-card:hover .material-img {
+  transform: scale(1.05);
+}
+
+/* Overlay Certifications */
+.material-overlay-tags {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  z-index: 2;
+}
+
+.cert-pill {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  color: var(--text-primary);
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+}
+
+.cert-pill.pool-tag {
+  background: #0abab5;
+  color: #ffffff;
+  border: none;
+  font-weight: 800;
+}
+
+/* Card Body */
+.material-body {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.material-category-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand-cyan-dark);
+  margin-bottom: 0.25rem;
+}
+
+.material-title {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+  cursor: pointer;
+}
+
+.material-title:hover {
+  color: var(--brand-cyan);
+}
+
+.material-grade {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+
+.material-summary {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Wholesale Tier Matrix Table on Card */
+.tier-pricing-box {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 0.65rem 0.85rem;
+  margin-bottom: 1.1rem;
+}
+
+.tier-title-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 0.45rem;
+}
+
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.tier-col {
+  padding: 0.4rem;
+  background: #ffffff;
+  border-radius: var(--radius-xs);
+  text-align: center;
+  border: 1px solid var(--border-subtle);
+}
+
+.tier-col.highlight-tier {
+  border-color: var(--brand-cyan);
+  background: var(--brand-cyan-light);
+}
+
+.tier-qty-label {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+}
+
+.tier-price-val {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+}
+
+.tier-save-badge {
+  font-size: 0.65rem;
+  color: var(--brand-emerald);
+  font-weight: 800;
+}
+
+/* Card Order Actions & MOQ */
+.material-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.moq-indicator {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.moq-bold {
+  color: var(--brand-cyan-dark);
+  font-weight: 800;
+}
+
+.card-action-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-inspect {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(10, 186, 181, 0.05);
+  transition: all var(--transition-fast);
+}
+
+.btn-inspect:hover {
+  border-color: var(--brand-cyan);
+  color: var(--brand-cyan-dark);
+}
+
+.btn-add-po {
+  background: var(--gradient-cyan-indigo);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: var(--glow-cyan);
+  transition: all var(--transition-fast);
+}
+
+.btn-add-po:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   OFF-CANVAS PURCHASE ORDER (PO) & RFQ DRAWER (Crisp White & Tiffany Accent)
+   ========================================================================== */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 34, 37, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+}
+
+.drawer-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.po-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-left: 1px solid var(--border-medium);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--transition-smooth);
+  box-shadow: var(--shadow-lg);
+}
+
+.drawer-backdrop.active .po-drawer {
+  transform: translateX(0);
+}
+
+.po-drawer-header {
+  padding: 1.4rem 1.6rem;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.po-drawer-title {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-primary);
+}
+
+.po-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.po-close-btn:hover {
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+}
+
+/* PO Items List */
+.po-items-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.2rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.po-item-row {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(10, 186, 181, 0.05);
+}
+
+.po-item-top {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.po-item-thumb {
+  width: 55px;
+  height: 55px;
+  border-radius: var(--radius-xs);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.po-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.po-item-name {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.po-item-rate {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--brand-cyan-dark);
+  font-weight: 700;
+}
+
+.po-qty-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xs);
+  padding: 0.2rem 0.6rem;
+}
+
+.stepper-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-weight: 800;
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+}
+
+.stepper-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  min-width: 35px;
+  text-align: center;
+}
+
+/* PO Drawer Footer & Financial Summary */
+.po-drawer-footer {
+  padding: 1.4rem 1.6rem;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-surface-elevated);
+}
+
+.incoterms-selector {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.incoterm-chip {
+  flex: 1;
+  text-align: center;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.incoterm-chip.selected {
+  background: #0abab5;
+  border-color: #0abab5;
+  color: #ffffff;
+}
+
+.po-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.po-line.total-line {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  border-top: 1px solid var(--border-medium);
+  padding-top: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.btn-generate-po {
+  width: 100%;
+  margin-top: 1.2rem;
+  padding: 0.9rem;
+  background: var(--gradient-cyan-indigo);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--glow-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-generate-po:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(10, 186, 181, 0.45);
+}
+
+/* ==========================================================================
+   TECHNICAL SPECIFICATION & MILL TEST CERTIFICATE (MTC) MODAL
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 34, 37, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  max-width: 820px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  padding: 2.2rem;
+  transform: scale(0.96);
+  transition: transform var(--transition-normal);
+}
+
+.modal-overlay.active .modal-card {
+  transform: scale(1);
+}
+
+.modal-close-icon {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.4rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modal-close-icon:hover {
+  color: var(--text-primary);
+}
+
+/* Technical Specification Table */
+.spec-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.85rem;
+}
+
+.spec-data-table th,
+.spec-data-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-subtle);
+  text-align: left;
+}
+
+.spec-data-table th {
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  font-weight: 800;
+}
+
+.spec-data-table td {
+  background: #ffffff;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-primary);
+}
+
+/* Sample Request Banner */
+.sample-order-banner {
+  background: var(--brand-cyan-light);
+  border: 1px dashed var(--brand-cyan);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+}
+
+/* ==========================================================================
+   OFFICIAL PURCHASE ORDER (PO) GENERATOR MODAL & RECEIPT
+   ========================================================================== */
+.po-generator-modal {
+  max-width: 720px;
+}
+
+.corporate-po-sheet {
+  background: #ffffff;
+  color: #0e2225;
+  border: 2px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 2rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-md);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.po-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--brand-cyan);
+  padding-bottom: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.po-company-brand {
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  color: #0e2225;
+}
+
+.po-metadata {
+  text-align: right;
+  font-size: 0.85rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.po-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+}
+
+.po-items-table th,
+.po-items-table td {
+  padding: 0.65rem 0.8rem;
+  border-bottom: 1px solid #e2edec;
+  text-align: left;
+}
+
+.po-items-table th {
+  background: var(--bg-surface-elevated);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATIONS (Tiffany Accent Pill)
+   ========================================================================== */
+.toast-stack {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  pointer-events: none;
+}
+
+.toast-pill {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  backdrop-filter: blur(15px);
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  pointer-events: auto;
+  border-left: 4px solid var(--brand-cyan);
+  animation: slideToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-pill.toast-success {
+  border-left-color: var(--brand-emerald);
+}
+
+.toast-pill.toast-pool {
+  border-left-color: var(--brand-cyan);
+  background: #eef9f8;
+}
+
+@keyframes slideToast {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Confetti Layer */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3000;
+}
+
+/* ==========================================================================
+   B2B FOOTER (Tiffany Porcelain)
+   ========================================================================== */
+.b2b-footer {
+  background: #ebf5f4;
+  border-top: 1px solid rgba(10, 186, 181, 0.22);
+  padding: 3.5rem 0 2rem;
+  margin-top: 4rem;
+}
+
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.footer-col h5 {
+  font-size: 0.95rem;
+  margin-bottom: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.footer-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer-links-list a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-links-list a:hover {
+  color: var(--brand-cyan-dark);
+  font-weight: 700;
+}
+
+.footer-compliance-row {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 992px) {
+  .pool-banner-card {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+  .footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .search-form {
+    display: none;
+  }
+  .pool-hero-title {
+    font-size: 1.7rem;
+  }
+  .materials-grid {
+    grid-template-columns: 1fr;
+  }
+  .po-drawer {
+    max-width: 100%;
+  }
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+  }
+}

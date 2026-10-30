@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SYNAPSE B2B — Raw Materials Wholesale & Pooled Co-Procurement Platform</title>
+  <meta name="description" content="Direct factory mills, refineries, and collective pooled purchasing for small, medium, and heavy industries. Aggregate wholesale demand to cut supply chain costs.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+  <!-- Ambient Technical Background Gradients & Precision Grid -->
+  <div class="tech-grid-overlay" aria-hidden="true"></div>
+  <div class="ambient-industrial-light" aria-hidden="true"></div>
+  <div class="ambient-industrial-light-2" aria-hidden="true"></div>
+
+  <!-- Confetti Canvas for Order Placement Celebrations -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ==========================================================================
+       LIVE COMMODITY INDEXES TICKER RIBBON
+       ========================================================================== -->
+  <div class="commodity-ribbon" aria-label="Live Commodity Spot Prices">
+    <div class="ticker-track" id="commodity-ticker-track">
+      <!-- Injected dynamically by app.js -->
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       ENTERPRISE HEADER
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-b2b" id="brand-home-link" aria-label="Synapse B2B Gateway">
+        <div class="brand-cube">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z"/>
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <span class="brand-name">SYNAPSE<span style="color:var(--brand-cyan)">.</span>B2B</span>
+          <span class="brand-tagline">Industrial Wholesale & Co-Procurement</span>
+        </div>
+      </a>
+
+      <!-- Mill Direct Verification Badge -->
+      <div class="mill-direct-badge" title="All suppliers audited and ISO 9001 / Mill Test certified">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg>
+        <span>Mill Direct & ISO Audited</span>
+      </div>
+
+      <!-- Live Material Search Field -->
+      <div class="search-form" id="search-container">
+        <div class="search-field">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search raw material, ASTM grade, resin or alloy... (Press /)" 
+            autocomplete="off"
+            aria-label="Search raw materials catalog"
+          >
+        </div>
+      </div>
+
+      <!-- Actions Cockpit -->
+      <div class="header-actions">
+        <!-- Currency Dropdown -->
+        <select id="currency-select" class="currency-dropdown" aria-label="Select Trade Currency">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="INR">INR (₹)</option>
+          <option value="GBP">GBP (£)</option>
+        </select>
+
+        <!-- Verified Enterprise Buyer Profile -->
+        <div class="corporate-user-pill" id="corporate-profile-btn" title="Enterprise Corporate Account">
+          <div class="corp-dot"></div>
+          <div class="corp-info">
+            <span class="corp-name">Nexus Aero & Fab Ltd</span>
+            <span class="corp-tier">Tier-1 Credit · Net 30</span>
+          </div>
+        </div>
+
+        <!-- RFQ & Purchase Order Bag Trigger -->
+        <button id="po-drawer-trigger" class="po-cart-btn" aria-label="Open Purchase Order Bag">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span id="po-badge-count">0 Items</span>
+          <span id="po-weight-metric" class="po-weight-badge">0 MT</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ==========================================================================
+         POOLED CO-PROCUREMENT HERO SHOWCASE (Group Wholesale to Cut Costs)
+         ========================================================================== -->
+    <section class="pool-hero-section" id="pool-hero-section" aria-label="Active Collective Procurement Pool">
+      <div class="pool-banner-card">
+        <div class="pool-content">
+          <div class="pool-header-tags">
+            <div class="live-pool-pulse">
+              <span class="pulse-dot"></span>
+              Live Group Wholesale Pool
+            </div>
+            <div class="pool-deadline-pill" id="pool-timer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span id="pool-time-text">Pool Closes in 35h : 48m : 12s</span>
+            </div>
+          </div>
+
+          <h1 class="pool-hero-title">Buy Raw Materials Together.<br>Cut Factory Mill Costs by up to 25%.</h1>
+          <p class="pool-hero-desc">
+            Small and medium workshops pool their procurement orders together with large enterprises to unlock Tier-1 direct mill wholesale prices. Direct from ArcelorMittal & SABIC certified refineries.
+          </p>
+
+          <!-- Pool Progress Cockpit -->
+          <div class="pool-progress-block">
+            <div class="pool-metrics-row">
+              <span><strong>Featured Pool:</strong> Grade 304 Stainless Steel Coils</span>
+              <span class="metric-highlight" id="pool-fill-percentage">78% Filled (39 / 50 MT)</span>
+            </div>
+            <div class="pool-track">
+              <div class="pool-fill-bar" id="pool-bar-indicator" style="width: 78%;"></div>
+            </div>
+            <div class="pool-participants-meta">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>12 Verified Businesses currently joined in this dispatch batch (Saves 18% instantly)</span>
+            </div>
+          </div>
+
+          <div class="pool-action-row">
+            <button id="hero-join-pool-btn" class="btn-join-pool" data-material-id="mat-1">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Join 5 MT to Active Pool</span>
+            </button>
+            <button id="hero-inspect-btn" class="btn-learn-coop" data-material-id="mat-1">
+              <span>Inspect Mill Test Certificate</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="pool-visual-box">
+          <div class="pool-img-frame">
+            <img 
+              src="images/steel_coils.jpg" 
+              alt="Industrial Stainless Steel Mill Coils"
+              onerror="this.onerror=null; this.src='images/steel_coils.jpg';"
+            >
+            <div class="floating-saving-tag">
+              ⚡ 18% Collective Pool Discount
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         B2B FILTER & CATEGORY CONTROLS
+         ========================================================================== -->
+    <section class="b2b-toolbar-section" aria-label="Wholesale Catalog Filters">
+      <div class="b2b-controls-row">
+        <!-- Industry Category Tabs -->
+        <div class="industry-tabs" id="industry-tabs" role="tablist">
+          <button class="industry-tab-btn active" data-category="all" role="tab">All Industries (8)</button>
+          <button class="industry-tab-btn" data-category="metals" role="tab">Metals & Alloys</button>
+          <button class="industry-tab-btn" data-category="polymers" role="tab">Polymers & Resins</button>
+          <button class="industry-tab-btn" data-category="construction" role="tab">Construction & Structural</button>
+          <button class="industry-tab-btn" data-category="chemicals" role="tab">Chemicals & Solvents</button>
+          <button class="industry-tab-btn" data-category="electrical" role="tab">Machinery & Motors</button>
+          <button class="industry-tab-btn" data-category="packaging" role="tab">Industrial Packaging</button>
+        </div>
+
+        <!-- Sort & Filter Actions -->
+        <div class="sort-and-filters">
+          <select id="b2b-sort-select" class="b2b-select" aria-label="Sort raw materials">
+            <option value="featured">Featured Mill Stock</option>
+            <option value="moq-low">Lowest MOQ First</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="pool-active">Active Group Pools First</option>
+          </select>
+
+          <button id="pool-filter-toggle" class="btn-inspect" style="display:flex; align-items:center; gap:0.4rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            <span id="pool-filter-label">Group Pools Only</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Meta Status Bar -->
+      <div class="filter-meta-bar">
+        <span id="catalog-count-text">Displaying 8 verified industrial grade materials</span>
+        <span id="active-tag-indicator" class="active-filter-chip" style="display:none;">
+          Filtering by: <strong id="active-tag-name"></strong>
+          <button id="reset-filter-btn" style="background:none; border:none; color:inherit; text-decoration:underline; cursor:pointer; margin-left:6px;">Reset</button>
+        </span>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         B2B MATERIALS / RAW INVENTORY GRID
+         ========================================================================== -->
+    <section class="materials-grid-container" aria-label="Raw Materials Catalog">
+      <div class="materials-grid" id="materials-grid">
+        <!-- Dynamically rendered by app.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       OFF-CANVAS PURCHASE ORDER (PO) & RFQ DRAWER
+       ========================================================================== -->
+  <div class="drawer-backdrop" id="po-drawer-backdrop" aria-hidden="true">
+    <aside class="po-drawer" id="po-drawer" aria-label="Corporate Purchase Order">
+      <div class="po-drawer-header">
+        <h2 class="po-drawer-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          Purchase Order Draft (<span id="drawer-items-count">0</span>)
+        </h2>
+        <button id="po-drawer-close" class="po-close-btn" aria-label="Close PO Drawer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Scrollable PO Items -->
+      <div class="po-items-scroll" id="po-items-container">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- PO Drawer Financial & Incoterm Footer -->
+      <div class="po-drawer-footer" id="po-drawer-footer">
+        <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.4rem;">
+          Select Trade Incoterms
+        </div>
+        <div class="incoterms-selector">
+          <div class="incoterm-chip selected" data-incoterm="CIF" id="inco-cif" title="Cost, Insurance and Freight included to destination port">
+            CIF (Port/Hub)
+          </div>
+          <div class="incoterm-chip" data-incoterm="FOB" id="inco-fob" title="Free on Board at origin mill">
+            FOB (Origin)
+          </div>
+          <div class="incoterm-chip" data-incoterm="EXW" id="inco-exw" title="Ex Works pickup directly at factory warehouse">
+            EXW (Factory)
+          </div>
+        </div>
+
+        <div class="po-line">
+          <span>Gross Material Value</span>
+          <span id="po-gross-val">$0.00</span>
+        </div>
+        <div class="po-line" id="po-tier-save-line" style="color:var(--brand-emerald);">
+          <span>Volume Wholesale Discount</span>
+          <span id="po-tier-save-val">-$0.00</span>
+        </div>
+        <div class="po-line" id="po-pool-save-line" style="color:var(--brand-cyan); display:none;">
+          <span>Group Pool Collective Savings</span>
+          <span id="po-pool-save-val">-$0.00</span>
+        </div>
+        <div class="po-line">
+          <span>Freight Logistics & Insurance</span>
+          <span id="po-freight-val">$450.00</span>
+        </div>
+        <div class="po-line">
+          <span>Estimated GST / Corporate Tax (18%)</span>
+          <span id="po-tax-val">$0.00</span>
+        </div>
+        <div class="po-line total-line">
+          <span>Estimated Net Payable</span>
+          <span id="po-net-val" style="color:var(--brand-cyan);">$0.00</span>
+        </div>
+
+        <button id="generate-po-btn" class="btn-generate-po">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 11 12 14 22 4"></polyline>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+          <span>Generate Official Corporate PO</span>
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==========================================================================
+       TECHNICAL SPECIFICATION & MILL TEST CERTIFICATE (MTC) MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="spec-modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-mat-title">
+      <button class="modal-close-icon" id="spec-modal-close" aria-label="Close dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div>
+        <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.4rem;">
+          <span class="material-category-tag" id="modal-mat-cat">Metals & Alloys</span>
+          <span class="cert-pill" id="modal-mat-cert">MTC 3.1 Verified</span>
+        </div>
+        <h2 id="modal-mat-title" style="font-size: 1.6rem;">Material Specification Title</h2>
+        <div class="material-grade" id="modal-mat-grade" style="margin-top:0.2rem;">ASTM A240 / EN 10088-2</div>
+        <p style="font-size:0.9rem; color:var(--text-secondary); margin: 0.8rem 0 1.2rem;" id="modal-mat-desc">
+          Material description overview.
+        </p>
+
+        <!-- Technical Parameters Table -->
+        <h4 style="font-size:1rem; margin-bottom:0.6rem; color:var(--brand-cyan);">Verified Mechanical & Chemical Properties</h4>
+        <table class="spec-data-table">
+          <thead>
+            <tr>
+              <th>Testing Parameter / Metric</th>
+              <th>Laboratory Certified Value</th>
+            </tr>
+          </thead>
+          <tbody id="modal-spec-tbody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+
+        <!-- Sample Request Banner -->
+        <div class="sample-order-banner">
+          <div>
+            <div style="font-weight:700; font-size:0.9rem; color:var(--text-primary);">Need Quality Assurance Testing?</div>
+            <div style="font-size:0.8rem; color:var(--text-secondary);">Request a certified 5kg / 1-unit sample box delivered to your laboratory before dispatching heavy freight.</div>
+          </div>
+          <button id="request-sample-btn" class="btn-inspect" style="white-space:nowrap; background:var(--brand-cyan); color:#06101c; font-weight:800; border:none;">
+            Request Lab Sample
+          </button>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.8rem; margin-top:1.6rem;">
+          <button id="modal-add-po-btn" class="btn-add-po" style="padding:0.75rem 1.4rem; font-size:0.95rem;">
+            Add Material to PO Draft
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       OFFICIAL PURCHASE ORDER (PO) GENERATOR MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="po-sheet-modal" aria-hidden="true">
+    <div class="modal-card po-generator-modal" role="dialog" aria-modal="true">
+      <button class="modal-close-icon" id="po-sheet-close" aria-label="Close PO view">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div id="po-interactive-view">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <div>
+            <h2 style="font-size:1.5rem;">Corporate Purchase Order</h2>
+            <p style="font-size:0.85rem; color:var(--text-secondary);">Review corporate bill-to details and authorize procurement batch.</p>
+          </div>
+          <button id="autofill-po-btn" class="btn-inspect" style="background:rgba(6,182,212,0.15); border-color:var(--brand-cyan); color:var(--brand-cyan); font-weight:700;">
+            ⚡ Autofill Enterprise Profile
+          </button>
+        </div>
+
+        <!-- Corporate PO Printable Sheet -->
+        <div class="corporate-po-sheet" id="corporate-po-sheet">
+          <div class="po-sheet-header">
+            <div>
+              <div class="po-company-brand">SYNAPSE B2B INDUSTRIAL DIRECT</div>
+              <div style="font-size:0.78rem; color:#475569;">Central Mill Logistics Network · ISO 9001:2015</div>
+            </div>
+            <div class="po-metadata">
+              <div><strong>PO Ref:</strong> <span id="po-ref-num">PO-2026-8941</span></div>
+              <div><strong>Date:</strong> <span id="po-date-str">Oct 30, 2026</span></div>
+              <div><strong>Payment:</strong> Net 30 Corporate Line</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; font-size:0.82rem; margin-bottom:1rem;">
+            <div>
+              <strong style="color:#0f172a; text-transform:uppercase; font-size:0.75rem;">Buyer / Consignee:</strong>
+              <div id="po-buyer-name" style="font-weight:700; font-size:0.95rem;">Nexus Aerospace & Fabrication Ltd</div>
+              <div id="po-buyer-gst">GSTIN / TAX: 27AABCN1234F1Z8</div>
+              <div id="po-buyer-addr">Plot 84, Industrial Hub Phase II, Whitefield, Bengaluru</div>
+            </div>
+            <div>
+              <strong style="color:#0f172a; text-transform:uppercase; font-size:0.75rem;">Consolidated Logistics:</strong>
+              <div><strong>Incoterm:</strong> <span id="po-sheet-incoterm">CIF Destination Hub</span></div>
+              <div><strong>Dispatch Lead:</strong> Express Freight (3-5 Days)</div>
+              <div><strong>Quality Protocol:</strong> MTC 3.1 & SGS Lab Verified</div>
+            </div>
+          </div>
+
+          <!-- Items breakdown -->
+          <table class="po-items-table">
+            <thead>
+              <tr>
+                <th>Material / Standard</th>
+                <th>Quantity</th>
+                <th>Wholesale Rate</th>
+                <th>Total Value</th>
+              </tr>
+            </thead>
+            <tbody id="po-sheet-items-tbody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+
+          <div style="display:flex; justify-content:flex-end; margin-top:1rem;">
+            <div style="width:260px; font-size:0.85rem; line-height:1.6;">
+              <div style="display:flex; justify-content:space-between;">
+                <span>Materials Total:</span>
+                <span id="po-sheet-subtotal">$0.00</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; color:#10b981; font-weight:700;">
+                <span>Total Savings:</span>
+                <span id="po-sheet-savings">-$0.00</span>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span>Freight & Insurance:</span>
+                <span>$450.00</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.05rem; border-top:2px solid #0f172a; padding-top:0.4rem; margin-top:0.4rem;">
+                <span>Grand Total:</span>
+                <span id="po-sheet-grandtotal">$0.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.8rem;">
+          <button id="download-po-btn" class="btn-inspect" style="display:flex; align-items:center; gap:0.4rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Download Digital PO</span>
+          </button>
+          <button id="submit-po-btn" class="btn-add-po" style="padding:0.75rem 1.6rem; font-size:0.95rem; font-weight:800;">
+            <span>Authorize & Transmit PO to Mill</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PO Success Screen -->
+      <div id="po-success-view" style="display:none; text-align:center; padding:2rem 1rem;">
+        <div style="width:65px; height:65px; background:rgba(16,185,129,0.15); border:2px solid var(--brand-emerald); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.2rem; color:var(--brand-emerald);">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h2 style="font-size:1.7rem; margin-bottom:0.4rem;">Purchase Order Successfully Transmitted</h2>
+        <p style="color:var(--text-secondary); font-size:0.9rem; max-width:480px; margin:0 auto 1.5rem;">
+          Your order has been officially scheduled for mill allocation and logistics routing under PO Reference <strong id="success-po-ref" style="color:var(--brand-cyan);">PO-2026-8941</strong>.
+        </p>
+        <button id="po-success-done-btn" class="btn-join-pool" style="margin: 0 auto;">
+          Return to Wholesale Procurement Portal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Stack -->
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+  <!-- ==========================================================================
+       B2B INDUSTRIAL FOOTER
+       ========================================================================== -->
+  <footer class="b2b-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-col">
+          <div class="brand-b2b" style="margin-bottom: 0.8rem;">
+            <div class="brand-cube" style="width:34px; height:34px;">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9z"/></svg>
+            </div>
+            <span class="brand-name" style="font-size:1.25rem;">SYNAPSE<span style="color:var(--brand-cyan)">.</span>B2B</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 340px; line-height:1.5;">
+            The autonomous industrial wholesale marketplace. Aggregating raw material demand across small, medium, and large manufacturing enterprises.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h5>Raw Material Hubs</h5>
+          <ul class="footer-links-list">
+            <li><a href="#" onclick="selectCategory('metals')">ASTM Grade Metals & Coils</a></li>
+            <li><a href="#" onclick="selectCategory('polymers')">Virgin Polymers & Resins</a></li>
+            <li><a href="#" onclick="selectCategory('construction')">Fe-550D TMT Steel Rebar</a></li>
+            <li><a href="#" onclick="selectCategory('chemicals')">Industrial Feedstock Chemicals</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Procurement & ESG</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">Pooled Wholesale Rules</a></li>
+            <li><a href="#">Mill Test Certificate Verification</a></li>
+            <li><a href="#">Incoterms 2026 Guide</a></li>
+            <li><a href="#">Enterprise Credit (Net 30/60)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Logistics & Security</h5>
+          <ul class="footer-links-list">
+            <li><a href="#">SGS Third-Party Quality Inspection</a></li>
+            <li><a href="#">Escrow Bank Wire Protocols</a></li>
+            <li><a href="#">HazMat Dangerous Goods Transit</a></li>
+            <li><a href="#">Automated ERP / SAP Integration</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-compliance-row">
+        <span>© 2026 SYNAPSE B2B INDUSTRIAL COMMERCE INC. ALL TRADEMARKS REGISTERED.</span>
+        <span>Audited by SGS Quality Systems · ISO 9001:2015 & EN 10204 3.1 Compliant</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
